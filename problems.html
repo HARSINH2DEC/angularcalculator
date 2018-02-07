@@ -1,0 +1,40 @@
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+<body>
+
+    <div ng-app="myApp" ng-controller="myCtrl">
+
+        <input type="number" ng-model="num1">
+        <button ng-click="submit(num1)">FIBBONACCI</button> {{list.length}}
+        {{list}}
+    </div>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function ($scope) {
+            $scope.list = [0,1];
+            // var list;
+            $scope.submit = function (num1) 
+             {
+                for (i =  1;  i <= num1;  i++) {
+                   var list= $scope.list.push($scope.list[i]+$scope.list[i-1]);
+                }
+            //   $scope.list.push(num1);
+
+
+             
+                console.log("the series is -->",$scope.list);
+
+                // console.log("the series is -->",list);
+  }
+
+            
+
+        }
+
+        );
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<style>
+    
+    .dropD{
+
+    border-radius: 10px;
+    padding: 5px;
+    background-color: white;
+    color: rgb(0, 0, 128);
+
+    }
+
+</style>
+
+<body ng-app="app">
+
+
+    <div>
+        <div class="container" ng-controller="appController">
+            <div>
+            <div class="alert alert-success"> <span class="label label-info">Star Rating: Read/Write</span>
+
+                  <div star-rating rating="feedback.star_rating" read-only="false" max-rating="5" click="click1(param)" mouse-hover="mouseHover1(param)" mouse-leave="mouseLeave1(param)" ng-model="feedback.star_rating"></div>
+                  <div> <span class="label label-primary">Star Rating: {{feedback.star_rating}}</span>
+
+
+                  </div>
+              </div><br>
+
+      <!--   <input ng-model="feedback.agent_id" name="name" required/><br><br>
+        <input ng-model="feedback.lead_id" name="name" required/><br><br>
+        <input ng-model="feedback.timestamp" name="name" required/><br><br> -->
+
+        <form  name="DD">
+        <div class="feedback.star_rating">    
+
+            <select name="service_id" class="dropD" ng-hide="feedback.star_rating>3" ng-model="feedback.comments" ng-options="x for x in comment" required/ name="DD">
+                <option value="" disabled selected>Please Select Reason</option>
+            </select>
+            <span ng-show="DD.service_id.$error.required">Select Reason</span>
+        </div>
+        <form>
+        <div> {{feedback}}</div>
+        
+
+        <button ng-click=submit(feedback)> submit </button>
+    </div><br></br>
+
+
+</body>
+
+
+
+    <div> <br><br>
+    </div>
+
+
+</div>
+
+
+</body>
+
+
+<script>
+
+
+    var app = angular.module('app', []);
+
+    app.controller('appController', ['$scope','ratingPopup', function ($scope ,ratingPopup) {
+
+        $scope.feedback={};
+        $scope.feedback.star_rating=2;
+
+        var timestamp= new Date();
+
+    // intialize rating
+    /*$scope.starRating2 = 5;
+    $scope.starRating3 = 2;*/
+    $scope.hoverRating1 = 2;  // initialize 
+
+
+    $scope.submit = function(feedback){
+
+        ratingPopup.getResponders($scope.feedback);
+    };
+
+    $scope.click1 = function (param) {
+        //console.log('Click(' + param + ')');
+    };
+
+    $scope.mouseHover1 = function (param) {
+       // console.log('mouseHover(' + param + ')');
+       $scope.hoverRating1 = param;
+   };
+
+   $scope.mouseLeave1 = function (param) {
+       // console.log('mouseLeave(' + param + ')');
+       $scope.hoverRating1 = param + '*';
+   };
+
+   $scope.comment = [
+
+   "Couldn't see my leads properly" ,
+
+   "Product selection is difficult",
+
+   "App does not load properly",
+
+   "Difficult to navigate",
+   ];
+
+
+
+}]);
+    app.directive('starRating', function () {
+        return {
+            scope: {
+                rating: '=',
+                maxRating: '@',
+                readOnly: '@',
+                click: "&",
+                mouseHover: "&",
+                mouseLeave: "&"
+            },
+            restrict: 'EA',
+            template:
+            "<div style='display: inline-block; margin: 5px; padding: 5px;width:20px; cursor:pointer;' ng-repeat='idx in maxRatings track by $index'> \
+            <img ng-src='{{((hoverValue + _rating) <= $index) && \"http://www.codeproject.com/script/ratings/images/star-empty-lg.png\" || \"http://www.codeproject.com/script/ratings/images/star-fill-lg.png\"}}' \
+            ng-Click='isolatedClick($index + 1)' \
+            \
+        </img> \
+    </div>",
+    compile: function (element, attrs) {
+        if (!attrs.maxRating || (Number(attrs.maxRating) <= 0)) {
+            attrs.maxRating = '0';
+        };
+    },
+    controller: function ($scope, $element, $attrs) {
+        $scope.maxRatings = [];
+
+        for (var i = 1; i <= $scope.maxRating; i++) {
+            $scope.maxRatings.push({});
+        };
+
+        $scope._rating = $scope.rating;
+
+        $scope.isolatedClick = function (param) {
+            if ($scope.readOnly == 'true') return;
+
+            $scope.rating = $scope._rating = param;
+            $scope.hoverValue = 0;
+            $scope.click({
+                param: param
+            });
+        };
+
+            /*$scope.isolatedMouseHover = function (param) {
+                if ($scope.readOnly == 'true') return;
+
+                $scope._rating = 0;
+                $scope.hoverValue = param;
+                $scope.mouseHover({
+                    param: param
+                });
+            };*/
+
+            $scope.isolatedMouseLeave = function (param) {
+                if ($scope.readOnly == 'true') return;
+
+                $scope._rating = $scope.rating;
+                $scope.hoverValue = 0;
+                $scope.mouseLeave({
+                    param: param
+                });
+            };
+        }
+    };
+});
+/*app.factory('ratingPopup',['$resource','$q','$http',function($resource,$q,$http){
+
+   var fac={};
+
+   fac.sendData = function(feedback){
+
+      $http.post('https://uatminte.maxlifeinsurance.com/csg/api/Feedbacks/getFeedback',feedback).success(function(response){
+           
+           alert.(response.status);
+
+      })
+   }
+
+   return.fac;
+
+}]);*/
+app.factory("ratingPopup", ['$http', function($http) {
+    return {
+        getResponders: function(feedback) {
+            var agent_id = '';
+            var lead_id='';
+            var timestamp= new Date();
+            var reqData = {data:feedback,agent_id,lead_id ,timestamp};    
+            return $http.post('https://uatminte.maxlifeinsurance.com/csg/api/Feedbacks/submitFeedback',reqData)
+            .then(function(response) {
+             console.log("coming from servicejs", response.data);
+                //return data when promise resolved
+                //that would help you to continue promise chain.
+                return response.data;
+            });
+
+
+        }
+
+    };
+}]);
+
+/*app.factory('helpCenter', ['$resource', '$q', '$http', function(resource, q, $http) {
+    var helpDetails = resource('https://uatminte.maxlifeinsurance.com/csg/api/Feedbacks/getFeedback',feedback, {
+        'save': {
+            'method': "POST"
+        }
+    });
+    return {
+        getContactDetails: function(postData, callback) {
+            var data = { "data": postData };
+            helpDetails.save(data, function(err, data) {
+                callback(data, err);
+            })
+
+
+        }
+    }
+}]);*/
+
+
+ 
+
+
+ 
+
+</script>
+
+</html>
+
+
+
+

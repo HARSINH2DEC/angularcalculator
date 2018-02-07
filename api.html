@@ -1,0 +1,78 @@
+<html>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    
+    <body>
+        <div ng-app="myApp" ng-controller="myCtrl">
+            name: <br><input type="text" ng-model="postData.name" placeholder="please ennter ur name" /><br><br>
+            <br> JOB:
+            <br><input type="text" ng-model="postData.job" placeholder="please ennter ur gravity" /><br></br>
+    
+    
+            <div>
+                {{postData}}
+    
+            </div>
+            <button ng-click="submit(postData)">SUBMIT</button>
+    
+    
+        </div>
+    
+        <body>
+    
+            <script>
+                var app = angular.module('myApp', []);
+                app.controller('myCtrl', function ($scope, ratingPopup) {
+    
+                    $scope.postData = {};
+    
+                    $scope.submit = function (postData) {
+    
+                        ratingPopup.getResponders($scope.postData);
+    
+                    };
+    
+                });
+    
+    
+                // app.factory("ratingPopup", ['$http', function ($http) {
+                //     return {
+                //         getResponders: function (postData) {
+                //             var reqData = {data:postData};    
+                //             return $http.post('https://reqres.in/api/users/2',reqData )
+                //                 .then(function (response) {
+    
+                //                     console.log("coming from servicejs", response.data);
+                //                     //return data when promise resolved
+                //                     //that would help you to continue promise chain.
+                //                     alert("thanks for submitting the data , your id is" + response.data.id);
+                //                     return response.data;
+                //                 });
+    
+    
+                //         }
+    
+                //     };
+                // }]);
+
+                app.factory('ratingPopup', ['$http' , function($http){
+
+                    return{
+                       
+                       getResponders : function(postData){
+                           return $http.post('https://reqres.in/api/users/2' ,postData).then(
+                               function(response){
+                                console.log("coming from servicejs", response.data);
+                                
+                                alert("Ur Id Is -->"+" "+response.data.id + " , "+"Time is"+' '+  response.data.createdAt)
+                               }
+                           )
+
+                       }
+                    }
+
+               }]);
+            </script>
+    
+    
+    </html>

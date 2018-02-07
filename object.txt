@@ -1,0 +1,38 @@
+ 1) Defination 
+=================
+->An object is a collection of data or functionality .
+
+->Usually consisting of variables and functions which are reffered as properties and method once     associated with an object .
+===================================================================================================
+
+2) OOJS (object oriented java scipt)
+=====================================
+
+encapsulation
+-------------------------
+->Objects contains related data and behaviour ( properties and methods ) neately inside object package . This is called encapsulation .
+
+
+->Abstraction :-
+-------------------------
+object template or constructor .
+The constructor function is JavaScript's version of a class
+This is creating simple model for more complex things . ie constructor class.
+In javascript we can declare only one constructor per calss 
+
+In some other oops technology generic objects are called class . JS uses the name constructor .
+
+The process of creating a new object from a constructor class is called instansiation.
+
+
+-->polymorphism:-
+---------------------------
+Note: The fancy word for the ability of multiple object types to implement the same functionality is polymorphism .
+
+
+-->inheritance:-
+----------------------------
+The new child classes can be made to inherit the data and code features of their parent class, so you can reuse functionality common to all the object types rather than having to duplicate it.  Where functionality differs between classes, you can define specialized features directly on them as needed.
+
+
+When a new object instance is created from a constructor function, the functionality is not all copied over to the new object like "classic" OO languages — instead the functionality is linked to via a reference chain called a prototype chain (see Object prototypes). So this is not true instantiation, strictly speaking — JavaScript uses a different mechanism to share functionality between objects.

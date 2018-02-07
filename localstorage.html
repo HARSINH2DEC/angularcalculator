@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<style>
+    .ln {
+        margin-left: 7px;
+    }
+
+    .dob {
+        margin-left: 37px;
+    }
+</style>
+
+<body>
+
+    <div ng-app="myApp" ng-controller="formCtrl">
+        <form>
+            First Name : <input type="text" ng-model="input.firstname"><br><br> Last Name: <input type="text" ng-model="input.lastname"
+                class="ln"><br><br> DOB : <input type="text" ng-model="input.dob" class="dob"><br><br>
+
+        </form>
+        <button type="button" class="btn btn-success" ng-click="toLstorage(input)">Save To LocalStorage</button>
+    </div>
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('formCtrl', function ($scope, $localstorage, ) {
+            $scope.input = {};
+            // lines to add iput object to local storage 
+            $scope.toLstorage = function (input) {
+                $localstorage.setObject('val',input);
+                
+             console.log($localstorage.getObject('val'));
+            }
+        });
+        app.factory('$localstorage', ['$window', function ($window) {
+            return {
+                set: function (key, value) {
+                    $window.localStorage[key] = value;
+                },
+                get: function (key, defaultValue) {
+                    return $window.localStorage[key] || defaultValue;
+                },
+                setObject: function (key, value) {
+                    $window.localStorage[key] = JSON.stringify(value);
+                },
+                getObject: function (key) {
+                    return JSON.parse($window.localStorage[key] || '{}');
+                }
+            }
+        }]);
+    </script>
+
+</body>
+
+</html>

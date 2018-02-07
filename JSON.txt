@@ -1,0 +1,10 @@
+
+-->Defination 
+JSON is a text based data format .
+Closely resemles javascript object literal syntax.
+
+
+
+++++ JSON exists as a string when transmitting across the network  (stringification)++++
+++++ Its converted bact to native format when we want to access it (parsing)        +++
+

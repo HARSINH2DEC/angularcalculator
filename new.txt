@@ -1,0 +1,39 @@
+
+
+<<<The new key word >>>
+
+ -->Defination :-
+
+ The "new" keyword creates an instance of a user defined object type or a built in  object type that has a constructor function .
+
+-->Syntax :-
+
+
+   new constructor[([arguments])]
+
+
+-->Parameters :-
+
+     1)Constructor  :- A class or function that specifies the type of the object instance.
+     2)Arguments    :- A list of values that the constructor will be called with.
+
+-->Execution :-
+
+When the js engine comes across new Object() following things happen :-
+     
+     1)A new object is created inherited from prototype.
+
+     2)The new object function is called with specified arguments , the "this" keyword is then bound to the newly created object .
+
+     3)We can add different values to the properties to all object of same type 
+
+-->  Function.prototype property :-
+ 
+ This defines a property that is shared by all objects created with that function, rather than by just one instance of the object type
+
+
+( question )  How is using new keyword and inheritance different ?
+
+
+
+

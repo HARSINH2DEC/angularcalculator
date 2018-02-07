@@ -1,0 +1,86 @@
+<html>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+<body ng-app="myapp" ng-controller='myctrl'>
+    name: <br><input type="text" ng-model="postData.name" placeholder="please ennter ur name" /><br><br> rotation_period
+    :<br>
+    <input type="text" ng-model="postData.rotation_period" placeholder="please ennter ur rotation_period" /><br></br>
+    orbital_period:<br><input type="text" ng-model="postData.orbital_period" placeholder="please ennter ur orbital_period"
+    /><br></br>
+    diameter: <br><input type="text" ng-model="postData.diameter" placeholder="please ennter ur diameter" /><br></br>
+    climate:<br><input type="text" ng-model="postData.climate" placeholder="please ennter ur climate" /><br></br>
+    gravity:<br><input type="text" ng-model="postData.gravity" placeholder="please ennter ur gravity" /><br></br>
+    terrain:<br><input type="text" ng-model="postData.terrain" placeholder="please ennter ur terrain" /><br></br>
+    surface_water:<br><input type="text" ng-model="postData.surface_water" placeholder="please ennter ur surface_water" /><br></br>
+
+    <button ng-click="submit()">SUBMIT</button>
+
+
+</body>
+
+<script>
+    var app = angular.module('myapp', []);
+
+    app.controller('myctrl ', function ($scope, $http, myService) {
+
+        $scope.postData = {};
+        $scope.postData.name = '';
+        $scope.postData.rotation_period = '';
+        $scope.postData.orbital_period = '';
+        $scope.postData.diameter = '';
+        $scope.postData.climate = '';
+        $scope.postData.gravity = '';
+        $scope.postData.terrain = '';
+        $scope.postData.surface_water = '';
+
+        $scope.submit = function () {
+
+            myservice.getResponse($scope.postData);
+
+        }
+
+
+
+    });
+
+
+    app.service('myService', [function ($http) {
+        return {
+            getResponse: function (postData) {
+                var reqData = { data: postData };
+                return $http.post('https://swapi.co/api/planets/3', reqData)
+                    .then(function (response) {
+                        console.log(response.data);
+
+                        return response.data;
+                    });
+
+
+            }
+        }
+
+
+
+
+
+    }]); -->
+
+
+    <script>
+
+    function factorial(x) 
+{ 
+
+  if (x === 0)
+ {
+    return 1;
+ }
+  return x * factorial(x-1);
+         
+}
+console.log(factorial(5));
+</script>
+
+
+
+</html>

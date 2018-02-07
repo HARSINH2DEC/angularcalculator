@@ -1,0 +1,81 @@
+<script>
+  // +++++++++constructor chaining +++++++++++++++++++++++++++
+
+  function Product(name, price) {
+
+    this.name = name;
+    this.price = price;
+
+
+  }
+  // new constructor same as product with new property cateogory
+  function Toy(name, price) {
+
+    Product.call(this, name, price)
+    this.category = '88888';
+  }
+
+  // new constructor declaration with added properties 
+  function Food(name, price) {
+
+    Product.call(this, name, price);
+    this.category = 'food';
+  }
+
+
+
+
+  var cheese = new Toy('feta', 5);
+  var fun = new Food('robot', 40);
+  console.log(cheese)
+
+  var name = 'Chris';
+  function greeting() {
+    alert('Hello ' + name + ': welcome to our company.');
+  }
+
+  ;
+  console.log(cheese.category);
+  console.log(fun);
+
+  // we have made new constructors using call () function . new constructors are Toy & Food
+
+  //++++++++++++++++++++++++++++++++ Calling anonymus function ++++++++++++++++++++++++++++++++++
+  var animals = [
+    { species: 'Lion', name: 'King' },
+    { species: 'Whale', name: 'Fail' },
+    { species: 'fish', name: 'rohu' }
+  ];
+
+  for (var i = 0; i < animals.length; i++) {
+    (function (i) {
+      this.print = function () {
+        console.log('#' + i + ' ' + this.species
+          + ': ' + this.name);
+      }
+      this.print();
+    }).call(animals[i], i);
+  }
+
+  // here an anonymus function has been called .
+
+  //++++++++++++++++++++++DISPLAYING FUNCTION SCOPE+++++++++++++++++++++++++++++++
+
+
+  
+  var name = 'Chris';
+  function greeting() {
+    console.log('Hello ' + name + ': welcome to our company.');
+  }
+ 
+  greeting();  //scope1
+  
+
+  var name = 'Zaptec';
+  function greeting() {
+    console.log('Our company is called ' + name + '.');
+  }
+
+  greeting(); //scopr2
+
+</script>

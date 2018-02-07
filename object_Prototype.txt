@@ -1,0 +1,9 @@
+--NOTE :--
+
+Javascript is called a prototype based language.
+
+Different objects have properties and methods defined in constructor available to them .
+
+In classical OOP when a constructor is instanciated all new properties are added to the instances
+
+BUT in OOJS all propertes and methods of a constructor are linked to new instances via the word "prototype"

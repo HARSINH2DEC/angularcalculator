@@ -1,0 +1,9 @@
+Call Uses :-
+
+-->With call we can inherit function of any object without having to rewrite it. It displays a type of inheritance 
+
+-->Using call to chain constructors for an object
+
+-->Using call to invoke an anonymous function
+
+-->Using call to invoke a function and specifying the context for 'this'

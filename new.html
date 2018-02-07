@@ -1,0 +1,41 @@
+
+<script>
+function car(make,model,year){
+	this.make=make;
+	this.model=model;
+	this.year=year;
+	
+}
+
+function food (sweet , salty , spicy){
+
+	this.sweet=sweet;
+	this.salty=salty;
+	this.spicy=spicy;
+}
+
+// creating new instance of a car using new keyword 
+
+var mycar = new car ('a','b','c');
+var hiscar= new car('c','d','e');
+var hercar= new car('f','g','h');
+
+var breakfast=new food('icecream','patties' ,'curry');
+
+car.prototype.color=null;    // how to use prototype
+
+console.log(mycar.color);    // output null  
+
+mycar.color='red';           // output red
+
+console.log(mycar.color);
+console.log(mycar);
+console.log(hiscar);
+console.log(hercar);
+console.log(breakfast);
+console.log(breakfast.salty);
+console.log(breakfast.spicy);
+console.log(breakfast.sweet);
+
+
+</script>

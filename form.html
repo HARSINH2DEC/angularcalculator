@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		
+
+	</title>
+</head>
+<body>
+	<centre>A SIMPLE FORM Enter your details </centre>
+
+	<table>
+		<tr>  
+			<td>NAME</td><td> <input type="text" name="name" ng-model="details.name"></td>
+		</tr>
+
+		<tr>  
+			<td>AGE</td><td> <input type="text" name="job" ng-model="details.job"></td>
+		</tr>
+		
+
+	</table>
+
+
+	<button ng-click="submit(details)" >SUBMIT</button>
+
+
+	<div> {{details}}</div>
+
+	<script>
+		
+		console.log(details);
+	</script>
+
+</body>
+</html>
