@@ -1,0 +1,240 @@
+<html>
+    <style>
+        button {
+            border-radius: 10px;
+            background-color: #b3e0f5;
+            color: #222bb2;
+        }
+    
+        input {
+            border-radius: 10px;
+            height: 40px;
+            width: 250px;
+            background-color: rgba(0, 208, 255, 0.25)
+        }
+    </style>
+    
+    <body>
+        <div ng-app="myapp" ng-controller="myctrl">
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+            <h1> A PLANE JS CALCULATOR </h1>
+            
+            <input type="number" placeholder="please enter a number" ng-model="number1" /><br><br>
+            <input type="number" placeholder="please enter a number" ng-model="number2"><br><br>
+            <button ng-click="factorial(number1)">FACTORIAL</button>
+            <button ng-click="sum(number1 ,number2)">SUM</button><br><br>
+            <button ng-click="substract(number1 ,number2)">SUBSTRACT</button><br><br>
+            <button ng-click="multiply(number1 ,number2)">MULTIPLY</button><br><br>
+            <button ng-click="divide(number1 ,number2)">DIVIDE</button><br><br>
+            <button ng-click="EO(number1)">EVEN/ODD</button><br><br>
+            <button ng-click="range(number1 ,number2)">RANGE</button><br><br>
+            <button ng-click="sort(number1)">addToarr</button>
+    
+            <div>
+                YOU ENTERD number1 as :{{number1}}
+            </div><br><br>
+    
+            <div>
+                YOU ENTERD number2 as :{{number2}}
+    
+            </div><br><br>
+            <div>
+                YOUR ANSWER :{{answer}}
+    
+            </div>
+        </div>
+    
+    </body>
+    
+    <script>
+        var app = angular.module('myapp', []);
+    
+        app.controller('myctrl', function ($scope) {
+    
+            $scope.number1;
+            $scope.output;
+            $scope.summation;
+            $scope.product;
+            $scope.div;
+            $scope.minus;
+            $scope.factorial = function (number1) {
+                if (number1 === 0) {
+                    console.log(1);
+    
+                }
+                else {
+    
+                    var output = 1;
+                    for (i = 2; i <= number1; i++)
+    
+                        output = output * i;
+    
+    
+    
+                    console.log(output);
+    
+                    $scope.answer = output;
+    
+    
+    
+                }
+    
+    
+    
+            }
+    
+            $scope.sum = function (number1, number2) {
+    
+                var summation = 0;
+                summation = number1 + number2;
+                console.log(summation);
+                $scope.answer = summation;
+    
+    
+            }
+    
+            $scope.multiply = function (number1, number2) {
+                var product = null;
+                product = number1 * number2;
+                console.log(product);
+                $scope.answer = product;
+    
+            }
+            $scope.divide = function (number1, number2) {
+    
+                if (number1 > number2) {
+                    var div = null;
+                    div = number1 / number2;
+                    console.log(div);
+                    $scope.answer = div;
+    
+                }
+                else {
+                    div = number2 / number1;
+                    console.log(div);
+                    $scope.answer = div;
+    
+                }
+    
+    
+    
+            }
+            $scope.substract = function (number1, number2) {
+    
+                if (number1 > number2) {
+                    var minus = null;
+                    minus = number1 - number2;
+                    $scope.answer = minus;
+                }
+                else {
+                    minus = number2 - number1;
+                    $scope.answer = minus;
+                }
+    
+            }
+    
+    
+            $scope.EO = function (number1) {
+                if (number1 % 2 === 0)
+                    $scope.answer = "EVEN";
+                else {
+                    $scope.answer = "ODD";
+                }
+    
+            }
+    
+            $scope.range = function (number1, number2) {
+                $scope.arr = [];
+                for (i = number1 + 1; i < number2; i++) {
+                    // $scope.arr = [];
+                    var arr = $scope.arr.push(i);
+                    var a = $scope.arr[3];
+                    console.log(a);
+    
+                }
+                $scope.answer = $scope.arr;
+    
+                console.log($scope.arr);
+    
+    
+            }
+    
+            $scope.arr2 = [];
+            var sum = 0;
+            for (i = 0; i <= 50; i++) {
+                if (i % 3 == 0 && i % 5 === 0) {
+                    var arr2 = $scope.arr2.push(i)//arrey of numbers
+                    sum += i;// sum of numbers
+                 
+                }
+    
+            }
+            console.log($scope.arr2);
+            console.log(sum);
+    
+            function bubble_Sort(a) {
+                var swapp;
+                var n = a.length - 1;
+                var x = a;
+                do {
+                    swapp = false;
+                    for (var i = 0; i < n; i++) {
+                        if (x[i] > x[i + 1]) {
+                            var temp = x[i];
+                            x[i] = x[i + 1];
+                            x[i + 1] = temp;
+                            swapp = true;
+                        }
+                    }
+                    n--;
+                } while (swapp);
+    
+                return x;
+            }
+    
+            console.log(bubble_Sort([12, 345, 4, 546, 122, 84, 98, 64, 9, 1, 3223, 455, 23, 234, 213]));
+    
+            function sorting(b) {
+                var swap;
+                var n = b.length;
+                var x = b;
+                do {
+                    swap = false;
+                    for (var i = 0; i < n; i++) {
+                        if (x[i] > x[i + 1]) {
+                            var temp = x[i];
+                            x[i] = x[i + 1];
+                            x[i + 1] = temp;
+                            swap = true;
+    
+    
+                        }
+    
+                    }
+                    // n--;
+    
+                }
+                while (swap);
+                return x;
+    
+            }
+            console.log([5, 1, 4, 2, 8]);
+            console.log(sorting([5, 1, 4, 2, 8]));
+    
+            // bubble sorting 
+            $scope.array = [];
+            $scope.sort = function (number1) {
+    
+                var array = $scope.array.push(number1);
+                console.log(array);
+                $scope.answer = array;
+    
+    
+            }
+    
+        });
+    
+    </script>
+    
+    
+    </html>
